@@ -1,0 +1,320 @@
+body {
+    background-color: #f8f9fa;
+    color: #333;
+    min-height: 100vh;
+    position: relative;
+}
+
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    background: white;
+    min-height: 100vh;
+    position: relative;
+    /* padding-bottom handled by common.css */
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid #e5e5e5;
+    background: white;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.back-btn {
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #333;
+}
+
+.header-title {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.cancel-btn {
+    background: none;
+    border: none;
+    color: #007AFF;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.form-container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-height: calc(100vh - 140px);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-label {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+}
+
+.form-input {
+    background: #e8eaed;
+    border: none;
+    border-radius: 8px;
+    padding: 16px;
+    font-size: 16px;
+    outline: none;
+    transition: background-color 0.2s;
+}
+
+.form-input:focus {
+    background: #d1d5db;
+}
+
+.form-input::placeholder {
+    color: #9ca3af;
+}
+
+.logo-upload {
+    background: #e8eaed;
+    border: none;
+    border-radius: 8px;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    position: relative;
+}
+
+.logo-upload:hover {
+    background: #d1d5db;
+}
+
+.upload-icon {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #9ca3af;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.upload-icon::before {
+    content: '+';
+    font-size: 18px;
+    color: #9ca3af;
+    font-weight: bold;
+}
+
+.textarea {
+    background: #e8eaed;
+    border: none;
+    border-radius: 8px;
+    padding: 16px;
+    font-size: 16px;
+    outline: none;
+    resize: vertical;
+    min-height: 100px;
+    font-family: inherit;
+}
+
+.textarea:focus {
+    background: #d1d5db;
+}
+
+.save-btn {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: auto;
+    position: sticky;
+    bottom: 20px;
+}
+
+.save-btn:hover {
+    background: #45a049;
+}
+
+.save-btn:active {
+    background: #3d8b40;
+}
+
+/* Стили для экрана проекта */
+.project-view {
+    display: none;
+    padding: 20px;
+    text-align: center;
+}
+
+.project-image {
+    width: 100%;
+    height: 200px;
+    background: #e8eaed;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.project-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.project-subtitle {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.project-description {
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 40px;
+}
+
+.edit-btn {
+    background: #6366f1;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+.delete-btn {
+    background: none;
+    color: #ef4444;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 12px;
+}
+
+/* Стили для списка проектов */
+.projects-list {
+    display: none;
+    padding: 20px;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    background: #e8eaed;
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    gap: 12px;
+}
+
+.search-icon {
+    width: 20px;
+    height: 20px;
+    opacity: 0.6;
+}
+
+.search-input {
+    background: none;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    flex: 1;
+}
+
+.filter-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.project-card {
+    background: #f5f5f5;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+    position: relative;
+}
+
+.project-card-image {
+    width: 60px;
+    height: 60px;
+    background: #e8eaed;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+.project-card-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.project-card-desc {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 12px;
+}
+
+.open-btn {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.create-project-btn {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 360px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.visible {
+    display: block !important;
+}

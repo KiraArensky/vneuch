@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проекты</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/acc_project_page.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Форма создания проекта -->
+        <div id="create-form" class="form-view">
+            <div class="header">
+                <button class="back-btn" onclick="showProjectsList()">
+                    <span>←</span>
+                </button>
+                <div class="header-title">Создать проект</div>
+                <button class="cancel-btn" onclick="showProjectsList()">Отменить</button>
+            </div>
+            
+            <div class="form-container">
+                <div class="form-group">
+                    <label class="form-label">Название</label>
+                    <input type="text" class="form-input" id="project-name" placeholder="Название">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Логотип</label>
+                    <div class="logo-upload" onclick="document.getElementById('logo-input').click()">
+                        <div class="upload-icon"></div>
+                    </div>
+                    <input type="file" id="logo-input" accept="image/*" style="display: none;" onchange="handleLogoUpload(event)">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Описание</label>
+                    <textarea class="textarea" id="project-description" placeholder="Здесь должно быть описание"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Ссылка на АИС</label>
+                    <input type="url" class="form-input" id="project-url" placeholder="https://student.surgu.ru">
+                </div>
+                
+                <button class="save-btn" onclick="saveProject()">Сохранить</button>
+            </div>
+        </div>
+
+        <!-- Просмотр проекта -->
+        <div id="project-view" class="project-view">
+            <div class="header">
+                <button class="back-btn" onclick="showProjectsList()">
+                    <span>←</span> Назад
+                </button>
+                <div class="header-title"></div>
+                <span style="color: #666;">000 ⓘ</span>
+            </div>
+            
+            <div class="project-image" id="view-project-image"></div>
+            <div class="project-title" id="view-project-title">Электронная открытка «Ev-a»</div>
+            <div class="project-subtitle" id="view-project-subtitle">🔗 Ссылка на АИС</div>
+            <div class="project-description" id="view-project-description">Краткое описание проекта</div>
+            
+            <button class="edit-btn" onclick="editProject()">Изменить проект</button>
+            <button class="delete-btn" onclick="deleteProject()">Удалить проект</button>
+        </div>
+
+        <!-- Список проектов -->
+        <div id="projects-list" class="projects-list visible">
+            <div class="header">
+                <button class="back-btn">
+                    <span>←</span> Назад
+                </button>
+                <div class="header-title">Проекты</div>
+                <div></div>
+            </div>
+            
+            <div class="search-container">
+                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+                <input type="text" class="search-input" placeholder="Поиск" id="search-input" oninput="filterProjects()">
+                <button class="filter-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            
+            <div id="projects-container">
+                <!-- Project cards will be rendered here by JS -->
+            </div>
+            
+            <button class="create-project-btn" onclick="showCreateForm()">Создать проект</button>
+        </div>
+    </div>
+
+    <div class="bottom-nav">
+        <a href="main_page.html" class="nav-item">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+            </svg>
+            <span>Главная</span>
+        </a>
+        <a href="mero_page.html" class="nav-item">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+            </svg>
+            <span>Мероприятия</span>
+        </a>
+        <a href="acc_page.html" class="nav-item active">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 5.5V4C15 2.9 14.1 2 13 2H11C9.9 2 9 2.9 9 4V5.5L3 7V9L9 7.5V16H7V22H17V16H15V7.5L21 9Z"/>
+            </svg>
+            <span>Профиль</span>
+        </a>
+    </div>
+
+    <script src="../js/common.js" defer></script>
+    <script src="../js/acc_project_page.js" defer></script>
+</body>
+</html>

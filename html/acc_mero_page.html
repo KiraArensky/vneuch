@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мероприятия</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/acc_mero_page.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Main Events Page -->
+        <div id="main-page">
+            <div class="header">
+                <button class="back-btn">‹</button>
+                <div class="header-title">Мероприятия</div>
+                <div></div>
+            </div>
+
+            <div class="search-bar">
+                <input type="text" class="search-input" placeholder="Поиск">
+            </div>
+
+            <div class="tabs">
+                <button class="tab active" data-tab="all">Все (0)</button>
+                <button class="tab" data-tab="my">Мои (0)</button>
+            </div>
+
+            <div class="content">
+                <div id="events-list">
+                    <div class="empty-state">
+                        <div class="empty-icon">📅</div>
+                        <div>Мероприятий пока нет</div>
+                    </div>
+                </div>
+
+                <button class="create-btn" onclick="showCreateForm()">Создать мероприятие</button>
+            </div>
+        </div>
+
+        <!-- Create Event Form -->
+        <div id="create-form" class="form-page">
+            <div class="form-header">
+                <button class="cancel-btn" onclick="hideCreateForm()">Отменить</button>
+                <div class="form-title">Название мероприятия</div>
+                <div></div>
+            </div>
+
+            <div class="form-content">
+                <div class="form-group">
+                    <label class="form-label">Название</label>
+                    <input type="text" class="form-input" id="event-name" placeholder="Название">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Дата проведения</label>
+                    <div class="date-inputs">
+                        <input type="date" class="form-input" id="start-date" value="2025-05-10">
+                        <input type="date" class="form-input" id="end-date" value="2025-05-07">
+                        <input type="time" class="form-input" id="event-time" value="00:00">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Место проведения</label>
+                    <input type="text" class="form-input" id="event-location" placeholder="Сургут">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Описание</label>
+                    <textarea class="form-textarea" id="event-description" placeholder="Здесь должно быть описание"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Уровень мероприятия</label>
+                    <select class="form-select" id="event-level">
+                        <option value="city">Городской</option>
+                        <option value="region">Региональный</option>
+                        <option value="federal">Федеральный</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Номинация мероприятия</label>
+                    <select class="form-select" id="event-nomination">
+                        <option value="active">Актив</option>
+                        <option value="sport">Спорт</option>
+                        <option value="culture">Культура</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Формат участия</label>
+                    <div class="format-toggles">
+                        <button type="button" class="format-toggle active" data-format="offline">Оффлайн</button>
+                        <button type="button" class="format-toggle" data-format="online">Онлайн</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Фото</label>
+                    <div class="photo-upload" onclick="document.getElementById('photo-input').click()">
+                        <div class="upload-icon">+</div>
+                        <div>Загрузить фото</div>
+                    </div>
+                    <input type="file" id="photo-input" accept="image/*" style="display: none">
+                </div>
+
+                <button class="submit-btn" onclick="submitEvent()">Отправить</button>
+            </div>
+        </div>
+
+        <!-- Event Detail Page -->
+        <div id="event-detail" class="event-detail-page">
+            <div class="detail-header">
+                <button class="back-btn" onclick="hideEventDetail()">‹</button>
+                <div class="header-title">Назад</div>
+                <div>000 ℹ</div>
+            </div>
+
+            <div class="detail-content">
+                <div class="detail-image"></div>
+                
+                <h1 class="detail-title">Турслет</h1>
+                
+                <div class="detail-info">
+                    <div class="info-row">📅 08.09.2025 09:00</div>
+                    <div class="info-row">📍 База отдыха «Зашквар», Сургут</div>
+                </div>
+
+                <div class="detail-description">
+                    Первосвятительное ядро автоматически погружается в студенческую жизнь, используя поддержку муниципального сектора. Ориентация объекта облачает жизни туристов в дополнительную оболочку.
+                    <br><br>
+                    Обычные мероприятия спорт программы-мас. оранжевые дополнительность с мероприятия.
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                        <span style="font-size: 24px;">+</span>
+                        <span>Пожаловаться/рассуждения</span>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="action-btn primary-btn">На проверке</button>
+                    <button class="action-btn secondary-btn">Отменить заявку</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Success Modal -->
+        <div id="success-modal" class="modal">
+            <div class="modal-content">
+                <div class="success-icon">✉</div>
+                <div class="modal-title">Ваша заявка отправлена организатору!</div>
+                <div class="modal-text">Ваша заявка добавлена в раздел «Профиль» → «Мероприятия».<br>Мы обязательно отправим уведомление о статусе вашей заявки!</div>
+                <button class="close-btn" onclick="hideSuccessModal()">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/common.js" defer></script>
+    <script src="../js/acc_mero_page.js" defer></script>
+</body>
+</html>
