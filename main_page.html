@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>СурГУ - Внеучебная деятельность</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.4;
+            padding-bottom: calc(80px + env(safe-area-inset-bottom));
+        }
+
+        .container {
+            max-width: 100%;
+            padding: 0 16px;
+        }
+
+        .header {
+            background: white;
+            padding: 20px 16px;
+            margin-bottom: 16px;
+        }
+
+        .header h1 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            line-height: 1.2;
+        }
+
+        .header p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.3;
+        }
+
+        .video-section {
+            background: white;
+            margin: 16px;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 200px;
+            background: #e9ecef;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            position: relative;
+        }
+
+        .video-placeholder::after {
+            content: '▶';
+            font-size: 40px;
+            color: #666;
+        }
+
+        .video-text {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 16px;
+            line-height: 1.4;
+        }
+
+        .video-text strong {
+            color: #333;
+        }
+
+        .cta-section {
+            text-align: center;
+            margin-bottom: 24px;
+            padding: 0 16px;
+        }
+
+        .cta-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .cta-subtitle {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .btn-primary {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 16px 24px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 500;
+            width: 100%;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-primary:hover {
+            background: #45a049;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 24px 16px 16px;
+            line-height: 1.2;
+        }
+
+        .section-subtitle {
+            font-size: 14px;
+            color: #666;
+            margin: 0 16px 20px;
+            line-height: 1.4;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            padding: 0 16px;
+            margin-bottom: 16px;
+        }
+
+        .card {
+            border-radius: 16px;
+            padding: 20px 16px;
+            color: white;
+            position: relative;
+            height: 140px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: scale(1.02);
+        }
+
+        .card.pink {
+            background: #e91e63;
+        }
+
+        .card.pink-light {
+            background: #ec407a;
+        }
+
+        .card.blue {
+            background: #2196f3;
+        }
+
+        .card.blue-light {
+            background: #42a5f5;
+        }
+
+        .card.orange {
+            background: #ff5722;
+        }
+
+        .card.orange-light {
+            background: #ff7043;
+        }
+
+        .card.teal {
+            background: #009688;
+        }
+
+        .card.teal-light {
+            background: #26a69a;
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 8px;
+        }
+
+        .card-subtitle {
+            font-size: 12px;
+            opacity: 0.9;
+            line-height: 1.3;
+        }
+
+        .card-arrow {
+            position: absolute;
+            bottom: 16px;
+            right: 16px;
+            width: 32px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0 max(12px, env(safe-area-inset-bottom));
+            z-index: 1000;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #666;
+            font-size: 12px;
+            padding: 8px;
+            border-radius: 8px;
+            transition: background-color 0.2s;
+        }
+
+        .nav-item:hover {
+            background-color: #f9f9f9;
+        }
+
+        .nav-item.active {
+            color: #2196f3;
+        }
+
+        .nav-icon {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 4px;
+            opacity: 0.6;
+        }
+
+        .nav-item.active .nav-icon {
+            opacity: 1;
+        }
+
+        .nav-icon.home {
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z'/%3E%3Cpolyline points='9,22 9,12 15,12 15,22'/%3E%3C/svg%3E");
+        }
+
+        .nav-icon.search {
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E");
+        }
+
+        .nav-icon.profile {
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2'/%3E%3Ccircle cx='12' cy='7' r='4'/%3E%3C/svg%3E");
+        }
+
+        @media (max-width: 360px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .card {
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Внеучебная деятельность</h1>
+        <p>Сургутского государственного университета</p>
+    </div>
+
+    <div class="video-section">
+        <div class="video-placeholder"></div>
+        <div class="video-text">
+            <strong>Твой шанс проявить себя - это здесь!</strong><br>
+            Раскрывай таланты, получай навыки, находи друзей и становись частью активного студенческого сообщества.<br>
+            Начни свой путь к успеху прямо сейчас!
+        </div>
+    </div>
+
+    <div class="cta-section">
+        <div class="cta-title">Скорее смотри,<br>как пользоваться!</div>
+        <button class="btn-primary" onclick="watchVideo()">Смотреть</button>
+    </div>
+
+    <div class="section-title">Студенческая жизнь кипит!</div>
+    <div class="section-subtitle">Множество интересных объединений ждут тебя! Узнай больше и присоединяйся!</div>
+
+    <div class="cards-grid">
+        <div class="card pink" onclick="openSection('media')">
+            <div>
+                <div class="card-title">Медиа и творчество</div>
+            </div>
+            <div class="card-arrow">→</div>
+        </div>
+
+        <div class="card pink-light" onclick="openSection('student-media')">
+            <div>
+                <div class="card-title">Студенческое медиа «Сфера»</div>
+                <div class="card-subtitle">Создавай контент как ты хочешь</div>
+            </div>
+        </div>
+
+        <div class="card blue" onclick="openSection('science')">
+            <div>
+                <div class="card-title">Наука и проекты</div>
+            </div>
+            <div class="card-arrow">→</div>
+        </div>
+
+        <div class="card blue-light" onclick="openSection('project-activities')">
+            <div>
+                <div class="card-title">Основы проектной деятельности</div>
+            </div>
+        </div>
+
+        <div class="card orange" onclick="openSection('sports')">
+            <div>
+                <div class="card-title">Спорт и Студ.отряды</div>
+            </div>
+            <div class="card-arrow">→</div>
+        </div>
+
+        <div class="card orange-light" onclick="openSection('sso')">
+            <div>
+                <div class="card-title">ССО «Северные Лисы»</div>
+                <div class="card-subtitle">Стань лучшей версией себя</div>
+            </div>
+        </div>
+
+        <div class="card teal" onclick="openSection('volunteer')">
+            <div>
+                <div class="card-title">Волонтерство</div>
+            </div>
+            <div class="card-arrow">→</div>
+        </div>
+
+        <div class="card teal-light" onclick="openSection('volunteer-center')">
+            <div>
+                <div class="card-title">Центр Волонтеров</div>
+                <div class="card-subtitle">Добрые дела становятся сильнее</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-nav">
+        <a href="main_page.html" class="nav-item active">
+            <div class="nav-icon home"></div>
+            <span>Главная</span>
+        </a>
+        <a href="mero_page.html" class="nav-item">
+            <div class="nav-icon search"></div>
+            <span>Мероприятия</span>
+        </a>
+        <a href="acc_page.html" class="nav-item">
+            <div class="nav-icon profile"></div>
+            <span>Профиль</span>
+        </a>
+    </div>
+
+    <script>
+        function watchVideo() {
+            alert('Открытие видео-инструкции...');
+        }
+
+        function openSection(section) {
+            const sectionNames = {
+                'media': 'Медиа и творчество',
+                'student-media': 'Студенческое медиа «Сфера»',
+                'science': 'Наука и проекты',
+                'project-activities': 'Основы проектной деятельности',
+                'sports': 'Спорт и Студ.отряды',
+                'sso': 'ССО «Северные Лисы»',
+                'volunteer': 'Волонтерство',
+                'volunteer-center': 'Центр Волонтеров'
+            };
+            
+            alert(`Переход в раздел: ${sectionNames[section]}`);
+        }
+
+        // Обработка навигации
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                const href = this.getAttribute('href');
+                
+                // Сохраняем активную страницу в localStorage
+                localStorage.setItem('activePage', href);
+                
+                // Переходим на страницу
+                window.location.href = href;
+            });
+        });
+
+        // Устанавливаем активный элемент при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            const activePage = localStorage.getItem('activePage') || 'main_page.html';
+            document.querySelectorAll('.nav-item').forEach(item => {
+                if (item.getAttribute('href') === activePage) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        });
+
+        // Существующий код для Telegram WebApp
+        if (window.Telegram && window.Telegram.WebApp) {
+            const tg = window.Telegram.WebApp;
+            tg.ready();
+            tg.expand();
+            
+            // Set theme colors
+            tg.setHeaderColor('#ffffff');
+            tg.setBackgroundColor('#f8f9fa');
+        }
+    </script>
+</body>
+</html>

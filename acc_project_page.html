@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проекты</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+            position: relative;
+            padding-bottom: 80px;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            border-bottom: 1px solid #e5e5e5;
+            background: white;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #333;
+        }
+
+        .header-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .cancel-btn {
+            background: none;
+            border: none;
+            color: #007AFF;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .form-container {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            min-height: calc(100vh - 140px);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-label {
+            font-size: 16px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-input {
+            background: #e8eaed;
+            border: none;
+            border-radius: 8px;
+            padding: 16px;
+            font-size: 16px;
+            outline: none;
+            transition: background-color 0.2s;
+        }
+
+        .form-input:focus {
+            background: #d1d5db;
+        }
+
+        .form-input::placeholder {
+            color: #9ca3af;
+        }
+
+        .logo-upload {
+            background: #e8eaed;
+            border: none;
+            border-radius: 8px;
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            position: relative;
+        }
+
+        .logo-upload:hover {
+            background: #d1d5db;
+        }
+
+        .upload-icon {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #9ca3af;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .upload-icon::before {
+            content: '+';
+            font-size: 18px;
+            color: #9ca3af;
+            font-weight: bold;
+        }
+
+        .textarea {
+            background: #e8eaed;
+            border: none;
+            border-radius: 8px;
+            padding: 16px;
+            font-size: 16px;
+            outline: none;
+            resize: vertical;
+            min-height: 100px;
+            font-family: inherit;
+        }
+
+        .textarea:focus {
+            background: #d1d5db;
+        }
+
+        .save-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 16px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: auto;
+            position: sticky;
+            bottom: 20px;
+        }
+
+        .save-btn:hover {
+            background: #45a049;
+        }
+
+        .save-btn:active {
+            background: #3d8b40;
+        }
+
+        /* Стили для экрана проекта */
+        .project-view {
+            display: none;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: #e8eaed;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .project-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .project-subtitle {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 4px;
+        }
+
+        .project-description {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 40px;
+        }
+
+        .edit-btn {
+            background: #6366f1;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 16px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 16px;
+        }
+
+        .delete-btn {
+            background: none;
+            color: #ef4444;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 12px;
+        }
+
+        /* Стили для списка проектов */
+        .projects-list {
+            display: none;
+            padding: 20px;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            background: #e8eaed;
+            border-radius: 12px;
+            padding: 12px 16px;
+            margin-bottom: 20px;
+            gap: 12px;
+        }
+
+        .search-icon {
+            width: 20px;
+            height: 20px;
+            opacity: 0.6;
+        }
+
+        .search-input {
+            background: none;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            flex: 1;
+        }
+
+        .filter-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .project-card {
+            background: #f5f5f5;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+            position: relative;
+        }
+
+        .project-card-image {
+            width: 60px;
+            height: 60px;
+            background: #e8eaed;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+        .project-card-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .project-card-desc {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+
+        .open-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .create-project-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 16px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            max-width: 360px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .visible {
+            display: block !important;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            border-top: 1px solid #e5e5e5;
+            z-index: 1000;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #666;
+            font-size: 12px;
+            gap: 4px;
+        }
+
+        .nav-item.active {
+            color: #007AFF;
+        }
+
+        .nav-icon {
+            width: 24px;
+            height: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Форма создания проекта -->
+        <div id="create-form" class="form-view">
+            <div class="header">
+                <button class="back-btn" onclick="showProjectsList()">
+                    <span>←</span>
+                </button>
+                <div class="header-title">Создать проект</div>
+                <button class="cancel-btn" onclick="showProjectsList()">Отменить</button>
+            </div>
+            
+            <div class="form-container">
+                <div class="form-group">
+                    <label class="form-label">Название</label>
+                    <input type="text" class="form-input" id="project-name" placeholder="Название">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Логотип</label>
+                    <div class="logo-upload" onclick="document.getElementById('logo-input').click()">
+                        <div class="upload-icon"></div>
+                    </div>
+                    <input type="file" id="logo-input" accept="image/*" style="display: none;" onchange="handleLogoUpload(event)">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Описание</label>
+                    <textarea class="textarea" id="project-description" placeholder="Здесь должно быть описание"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Ссылка на АИС</label>
+                    <input type="url" class="form-input" id="project-url" placeholder="https://student.surgu.ru">
+                </div>
+                
+                <button class="save-btn" onclick="saveProject()">Сохранить</button>
+            </div>
+        </div>
+
+        <!-- Просмотр проекта -->
+        <div id="project-view" class="project-view">
+            <div class="header">
+                <button class="back-btn" onclick="showProjectsList()">
+                    <span>←</span> Назад
+                </button>
+                <div class="header-title"></div>
+                <span style="color: #666;">000 ⓘ</span>
+            </div>
+            
+            <div class="project-image" id="view-project-image"></div>
+            <div class="project-title" id="view-project-title">Электронная открытка «Ev-a»</div>
+            <div class="project-subtitle" id="view-project-subtitle">🔗 Ссылка на АИС</div>
+            <div class="project-description" id="view-project-description">Краткое описание проекта</div>
+            
+            <button class="edit-btn" onclick="editProject()">Изменить проект</button>
+            <button class="delete-btn" onclick="deleteProject()">Удалить проект</button>
+        </div>
+
+        <!-- Список проектов -->
+        <div id="projects-list" class="projects-list visible">
+            <div class="header">
+                <button class="back-btn">
+                    <span>←</span> Назад
+                </button>
+                <div class="header-title">Проекты</div>
+                <div></div>
+            </div>
+            
+            <div class="search-container">
+                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+                <input type="text" class="search-input" placeholder="Поиск" id="search-input" oninput="filterProjects()">
+                <button class="filter-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            
+            <div id="projects-container">
+                <div class="project-card" onclick="showProject(0)">
+                    <div class="project-card-image"></div>
+                    <div class="project-card-title">Электронная открытка</div>
+                    <div class="project-card-desc">Краткое описание проекта</div>
+                    <button class="open-btn" onclick="event.stopPropagation(); window.open('https://student.surgu.ru', '_blank')">Открыть АИС</button>
+                </div>
+            </div>
+            
+            <button class="create-project-btn" onclick="showCreateForm()">Создать проект</button>
+        </div>
+    </div>
+
+    <div class="bottom-nav">
+        <a href="main_page.html" class="nav-item">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+            </svg>
+            <span>Главная</span>
+        </a>
+        <a href="mero_page.html" class="nav-item">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+            </svg>
+            <span>Мероприятия</span>
+        </a>
+        <a href="acc_page.html" class="nav-item active">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 5.5V4C15 2.9 14.1 2 13 2H11C9.9 2 9 2.9 9 4V5.5L3 7V9L9 7.5V16H7V22H17V16H15V7.5L21 9Z"/>
+            </svg>
+            <span>Профиль</span>
+        </a>
+    </div>
+
+    <script>
+        let projects = [
+            {
+                name: "Электронная открытка",
+                description: "Краткое описание проекта",
+                url: "https://student.surgu.ru",
+                logo: null
+            }
+        ];
+
+        let currentProject = null;
+
+        function showCreateForm() {
+            document.getElementById('projects-list').classList.add('hidden');
+            document.getElementById('project-view').classList.add('hidden');
+            document.getElementById('create-form').classList.remove('hidden');
+            clearForm();
+        }
+
+        function showProjectsList() {
+            document.getElementById('create-form').classList.add('hidden');
+            document.getElementById('project-view').classList.add('hidden');
+            document.getElementById('projects-list').classList.remove('hidden');
+            renderProjects();
+        }
+
+        function showProject(index) {
+            currentProject = index;
+            const project = projects[index];
+            
+            document.getElementById('view-project-title').textContent = project.name;
+            document.getElementById('view-project-subtitle').textContent = '🔗 Ссылка на АИС';
+            document.getElementById('view-project-description').textContent = project.description;
+            
+            const imageEl = document.getElementById('view-project-image');
+            if (project.logo) {
+                imageEl.style.backgroundImage = `url(${project.logo})`;
+                imageEl.style.backgroundSize = 'cover';
+                imageEl.style.backgroundPosition = 'center';
+            } else {
+                imageEl.style.backgroundImage = 'none';
+            }
+            
+            document.getElementById('projects-list').classList.add('hidden');
+            document.getElementById('create-form').classList.add('hidden');
+            document.getElementById('project-view').classList.remove('hidden');
+        }
+
+        function editProject() {
+            if (currentProject !== null) {
+                const project = projects[currentProject];
+                document.getElementById('project-name').value = project.name;
+                document.getElementById('project-description').value = project.description;
+                document.getElementById('project-url').value = project.url;
+                
+                showCreateForm();
+            }
+        }
+
+        function deleteProject() {
+            if (currentProject !== null && confirm('Удалить проект?')) {
+                projects.splice(currentProject, 1);
+                showProjectsList();
+            }
+        }
+
+        function saveProject() {
+            const name = document.getElementById('project-name').value.trim();
+            const description = document.getElementById('project-description').value.trim();
+            const url = document.getElementById('project-url').value.trim();
+            
+            if (!name) {
+                alert('Введите название проекта');
+                return;
+            }
+            
+            const logoInput = document.getElementById('logo-input');
+            let logoData = null;
+            
+            if (logoInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    logoData = e.target.result;
+                    saveProjectData();
+                };
+                reader.readAsDataURL(logoInput.files[0]);
+            } else if (currentProject !== null) {
+                logoData = projects[currentProject].logo;
+                saveProjectData();
+            } else {
+                saveProjectData();
+            }
+            
+            function saveProjectData() {
+                const projectData = {
+                    name: name,
+                    description: description,
+                    url: url,
+                    logo: logoData
+                };
+                
+                if (currentProject !== null) {
+                    projects[currentProject] = projectData;
+                } else {
+                    projects.push(projectData);
+                }
+                
+                showProjectsList();
+            }
+        }
+
+        function handleLogoUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const uploadArea = document.querySelector('.logo-upload');
+                    uploadArea.style.backgroundImage = `url(${e.target.result})`;
+                    uploadArea.style.backgroundSize = 'cover';
+                    uploadArea.style.backgroundPosition = 'center';
+                    uploadArea.querySelector('.upload-icon').style.display = 'none';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function clearForm() {
+            document.getElementById('project-name').value = '';
+            document.getElementById('project-description').value = '';
+            document.getElementById('project-url').value = '';
+            document.getElementById('logo-input').value = '';
+            
+            const uploadArea = document.querySelector('.logo-upload');
+            uploadArea.style.backgroundImage = 'none';
+            uploadArea.querySelector('.upload-icon').style.display = 'flex';
+            
+            currentProject = null;
+        }
+
+        function renderProjects() {
+            const container = document.getElementById('projects-container');
+            container.innerHTML = '';
+            
+            projects.forEach((project, index) => {
+                const card = document.createElement('div');
+                card.className = 'project-card';
+                card.onclick = () => showProject(index);
+                
+                card.innerHTML = `
+                    <div class="project-card-image" style="${project.logo ? `background-image: url(${project.logo}); background-size: cover; background-position: center;` : ''}"></div>
+                    <div class="project-card-title">${project.name}</div>
+                    <div class="project-card-desc">${project.description}</div>
+                    <button class="open-btn" onclick="event.stopPropagation(); window.open('${project.url}', '_blank')">Открыть АИС</button>
+                `;
+                
+                container.appendChild(card);
+            });
+        }
+
+        function filterProjects() {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            const cards = document.querySelectorAll('.project-card');
+            
+            cards.forEach(card => {
+                const title = card.querySelector('.project-card-title').textContent.toLowerCase();
+                const desc = card.querySelector('.project-card-desc').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || desc.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Инициализация
+        renderProjects();
+    </script>
+</body>
+</html>
