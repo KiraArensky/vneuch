@@ -1,0 +1,66 @@
+/* Common styles for the application */
+
+/* Universal Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Common Body Styles (Basic font and safe area padding) */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.4; /* Common, can be overridden */
+    padding-bottom: calc(80px + env(safe-area-inset-bottom)); /* Common for bottom nav */
+    /* background-color and color are often page-specific, so not included here */
+}
+
+/* Common Navigation Styles */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white; /* Default light theme background */
+    border-top: 1px solid #e0e0e0; /* Default light theme border */
+    display: flex;
+    justify-content: space-around;
+    padding: 12px 0 max(12px, env(safe-area-inset-bottom));
+    z-index: 1000;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #666; /* Default light theme text color */
+    font-size: 12px;
+    padding: 8px;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+}
+
+.nav-item:hover {
+    background-color: #f9f9f9; /* Default light theme hover */
+}
+
+.nav-item.active {
+    color: #2196f3; /* Common active color, can be overridden if needed */
+}
+
+.nav-icon {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 4px;
+    opacity: 0.6;
+}
+
+.nav-item.active .nav-icon {
+    opacity: 1;
+}
+
+.nav-text { /* Common class for text below nav icons */
+    font-size: 10px; /* From acc_page.css, good for consistency */
+    font-weight: 500; /* From acc_page.css */
+}

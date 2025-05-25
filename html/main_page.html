@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>СурГУ - Внеучебная деятельность</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/main_page.css">
+</head>
+<body>
+    <div class="header">
+        <h1>Внеучебная деятельность</h1>
+        <p>Сургутского государственного университета</p>
+    </div>
+
+    <div class="video-section">
+        <div class="video-placeholder"></div>
+        <div class="video-text">
+            <strong>Твой шанс проявить себя - это здесь!</strong><br>
+            Раскрывай таланты, получай навыки, находи друзей и становись частью активного студенческого сообщества.<br>
+            Начни свой путь к успеху прямо сейчас!
+        </div>
+    </div>
+
+    <div class="cta-section">
+        <div class="cta-title">Скорее смотри,<br>как пользоваться!</div>
+        <button class="btn-primary" onclick="watchVideo()">Смотреть</button>
+    </div>
+
+    <div class="section-title">Студенческая жизнь кипит!</div>
+    <div class="section-subtitle">Множество интересных объединений ждут тебя! Узнай больше и присоединяйся!</div>
+
+    <div class="cards-grid">
+        <div class="card pink" onclick="openSection('media')">
+            <div>
+                <div class="card-title">Медиа и творчество</div>
+            </div>
+            <div class="card-arrow">→</div>
+        </div>
+
+        <div class="card pink-light" onclick="openSection('student-media')">
+            <div>
+                <div class="card-title">Студенческое медиа «Сфера»</div>
+                <div class="card-subtitle">Создавай контент как ты хочешь</div>
+            </div>
+        </div>
+
+        <div class="card blue" onclick="openSection('science')">
+            <div>
+                <div class="card-title">Наука и проекты</div>
+            </div>
+            <div class="card-arrow">→</div>
+        </div>
+
+        <div class="card blue-light" onclick="openSection('project-activities')">
+            <div>
+                <div class="card-title">Основы проектной деятельности</div>
+            </div>
+        </div>
+
+        <div class="card orange" onclick="openSection('sports')">
+            <div>
+                <div class="card-title">Спорт и Студ.отряды</div>
+            </div>
+            <div class="card-arrow">→</div>
+        </div>
+
+        <div class="card orange-light" onclick="openSection('sso')">
+            <div>
+                <div class="card-title">ССО «Северные Лисы»</div>
+                <div class="card-subtitle">Стань лучшей версией себя</div>
+            </div>
+        </div>
+
+        <div class="card teal" onclick="openSection('volunteer')">
+            <div>
+                <div class="card-title">Волонтерство</div>
+            </div>
+            <div class="card-arrow">→</div>
+        </div>
+
+        <div class="card teal-light" onclick="openSection('volunteer-center')">
+            <div>
+                <div class="card-title">Центр Волонтеров</div>
+                <div class="card-subtitle">Добрые дела становятся сильнее</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-nav">
+        <a href="main_page.html" class="nav-item active">
+            <div class="nav-icon home"></div>
+            <span>Главная</span>
+        </a>
+        <a href="mero_page.html" class="nav-item">
+            <div class="nav-icon search"></div>
+            <span>Мероприятия</span>
+        </a>
+        <a href="acc_page.html" class="nav-item">
+            <div class="nav-icon profile"></div>
+            <span>Профиль</span>
+        </a>
+    </div>
+
+    <script src="../js/common.js" defer></script>
+    <script src="../js/main_page.js" defer></script>
+</body>
+</html>

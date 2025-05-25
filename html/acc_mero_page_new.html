@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мероприятия</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/acc_mero_page_new.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <button class="back-btn">‹</button>
+            <div class="header-title">Мероприятия</div>
+            <div></div>
+        </div>
+
+        <div class="search-bar">
+            <input type="text" class="search-input" placeholder="Поиск">
+        </div>
+
+        <div class="tabs">
+            <button class="tab active" data-tab="all">Все (0)</button>
+            <button class="tab" data-tab="my">Мои (0)</button>
+        </div>
+
+        <div class="content">
+            <div id="events-list">
+                <div class="empty-state">
+                    <div class="empty-icon">📅</div>
+                    <div>Мероприятий пока нет</div>
+                </div>
+            </div>
+
+            <button class="create-btn" onclick="showCreateForm()">Создать мероприятие</button>
+        </div>
+    </div>
+
+    <div class="bottom-nav">
+        <a href="main_page.html" class="nav-item">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+            </svg>
+            <span>Главная</span>
+        </a>
+        <a href="mero_page.html" class="nav-item active">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+            </svg>
+            <span>Мероприятия</span>
+        </a>
+        <a href="acc_page.html" class="nav-item">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 5.5V4C15 2.9 14.1 2 13 2H11C9.9 2 9 2.9 9 4V5.5L3 7V9L9 7.5V16H7V22H17V16H15V7.5L21 9Z"/>
+            </svg>
+            <span>Профиль</span>
+        </a>
+    </div>
+
+    <script src="../js/common.js" defer></script>
+    <script src="../js/acc_mero_page_new.js" defer></script>
+</body>
+</html>

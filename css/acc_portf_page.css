@@ -1,0 +1,330 @@
+body {
+    background-color: #f5f5f5;
+    color: #000;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 390px;
+    margin: 0 auto;
+    background: #f5f5f5;
+    min-height: 100vh;
+    position: relative;
+    /* padding-bottom handled by common.css */
+}
+
+/* Заголовок */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    background: #f5f5f5;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.back-btn {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #007AFF;
+}
+
+.header-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #000;
+}
+
+.info-btn {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #999;
+}
+
+/* Поиск */
+.search-section {
+    padding: 0 20px 15px;
+}
+
+.search-container {
+    position: relative;
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px 40px 12px 40px;
+    background: #e8e8ed;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    color: #000;
+}
+
+.search-input::placeholder {
+    color: #999;
+}
+
+.search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+}
+
+.filter-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    cursor: pointer;
+}
+
+/* Контент */
+.content {
+    padding: 0 20px 100px;
+}
+
+.diploma-item {
+    background: #e8e8ed;
+    border-radius: 15px;
+    width: 100%;
+    height: 120px;
+    margin-bottom: 15px;
+    position: relative;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.diploma-item:active {
+    opacity: 0.7;
+}
+
+.diploma-title {
+    position: absolute;
+    bottom: 8px;
+    left: 12px;
+    font-size: 12px;
+    color: #666;
+}
+
+/* Кнопка загрузки */
+.upload-btn {
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 40px);
+    max-width: 350px;
+    padding: 16px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    z-index: 100;
+}
+
+.upload-btn:hover {
+    background: #45a049;
+}
+
+.upload-btn:active {
+    background: #3d8b40;
+}
+
+/* Модальное окно добавления диплома */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #f5f5f5;
+    z-index: 1000;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.modal.show {
+    transform: translateY(0);
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    border-bottom: 1px solid #e8e8ed;
+}
+
+.modal-title {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.cancel-btn {
+    background: none;
+    border: none;
+    color: #007AFF;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.modal-content {
+    padding: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.form-input, .form-textarea {
+    width: 100%;
+    padding: 12px;
+    background: #e8e8ed;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    color: #000;
+}
+
+.form-input::placeholder, .form-textarea::placeholder {
+    color: #999;
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.upload-area {
+    background: #e8e8ed;
+    border-radius: 10px;
+    padding: 40px 20px;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.upload-icon {
+    font-size: 40px;
+    color: #999;
+    margin-bottom: 10px;
+}
+
+.save-btn {
+    width: 100%;
+    padding: 16px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+/* Страница просмотра диплома */
+.diploma-view {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #f5f5f5;
+    z-index: 1000;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.diploma-view.show {
+    transform: translateY(0);
+}
+
+.diploma-image {
+    width: 100%;
+    height: 300px;
+    background: #e8e8ed;
+    border-radius: 15px;
+    margin: 20px 0;
+}
+
+.diploma-info {
+    padding: 0 20px;
+}
+
+.diploma-name {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.diploma-subtitle {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.action-buttons {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.edit-btn {
+    width: 100%;
+    padding: 16px;
+    background: #6C5CE7;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.delete-btn {
+    width: 100%;
+    padding: 16px;
+    background: transparent;
+    color: #FF3B30;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
